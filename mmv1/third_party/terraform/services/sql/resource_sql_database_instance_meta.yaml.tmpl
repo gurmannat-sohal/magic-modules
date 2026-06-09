@@ -13,9 +13,7 @@ fields:
   - field: 'clone.preferred_zone'
   - field: 'clone.source_instance_deletion_time'
   - field: 'clone.source_instance_name'
-  {{- if ne $.TargetVersionName "ga" }}
   - field: 'clone.source_project'
-  {{- end }}
   - api_field: 'connectionName'
   - api_field: 'databaseVersion'
   - field: 'deletion_protection'
@@ -132,12 +130,8 @@ fields:
     field: 'settings.disk_autoresize_limit'
   - api_field: 'settings.dataDiskSizeGb'
     field: 'settings.disk_size'
-{{- if ne $.TargetVersionName "ga" }}
   - api_field: 'settings.dataDiskProvisionedIops'
-{{- end }}
-{{- if ne $.TargetVersionName "ga" }}
   - api_field: 'settings.dataDiskProvisionedThroughput'
-{{- end }}
   - api_field: 'settings.dataDiskType'
     field: 'settings.disk_type'
   - api_field: 'settings.edition'
@@ -151,6 +145,8 @@ fields:
   - api_field: 'settings.insightsConfig.recordApplicationTags'
   - api_field: 'settings.insightsConfig.recordClientAddress'
   - api_field: 'settings.insightsConfig.enhancedQueryInsightsEnabled'
+  - api_field: 'settings.entraidConfig.applicationId'
+  - api_field: 'settings.entraidConfig.tenantId'
   - api_field: 'settings.ipConfiguration.allocatedIpRange'
   - field: 'settings.ip_configuration.authorized_networks.expiration_time'
   - field: 'settings.ip_configuration.authorized_networks.name'
@@ -170,6 +166,7 @@ fields:
   - api_field: 'settings.ipConfiguration.pscConfig.pscEnabled'
   - api_field: 'settings.ipConfiguration.serverCaMode'
   - api_field: 'settings.ipConfiguration.serverCaPool'
+  - api_field: 'settings.ipConfiguration.serverCertificateRotationMode'
   - api_field: 'settings.ipConfiguration.sslMode'
   - api_field: 'settings.locationPreference.followGaeApplication'
   - api_field: 'settings.locationPreference.secondaryZone'
@@ -201,3 +198,5 @@ fields:
   - api_field: 'settings.userLabels'
   - api_field: 'settings.settingsVersion'
     field: 'settings.version'
+  - field: 'deletion_policy'
+    provider_only: true

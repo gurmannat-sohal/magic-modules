@@ -7,6 +7,8 @@ import (
 	"github.com/hashicorp/terraform-plugin-testing/helper/resource"
 	"github.com/hashicorp/terraform-provider-google/google/acctest"
 	"github.com/hashicorp/terraform-provider-google/google/envvar"
+	_ "github.com/hashicorp/terraform-provider-google/google/services/cloudrunv2"
+	_ "github.com/hashicorp/terraform-provider-google/google/services/resourcemanager"
 )
 
 func TestAccCloudRunV2WorkerPool_cloudrunv2WorkerPoolFullUpdate(t *testing.T) {
@@ -49,7 +51,6 @@ resource "google_cloud_run_v2_worker_pool" "default" {
   name     = "tf-test-cloudrun-worker-pool%{random_suffix}"
   description = "description creating"
   location = "us-central1"
-  launch_stage = "BETA"
   annotations = {
     generated-by = "magic-modules"
   }
@@ -67,6 +68,8 @@ resource "google_cloud_run_v2_worker_pool" "default" {
     annotations = {
       generated-by = "magic-modules"
     }
+    client = "template-client"
+    client_version = "template-client-version"
     containers {
       name = "container-1"
       image = "us-docker.pkg.dev/cloudrun/container/worker-pool"
@@ -101,7 +104,6 @@ resource "google_cloud_run_v2_worker_pool" "default" {
   description = "description updating"
   location = "us-central1"
   deletion_protection = false
-  launch_stage = "BETA"
   
   annotations = {
     generated-by = "magic-modules-files"
@@ -126,6 +128,8 @@ resource "google_cloud_run_v2_worker_pool" "default" {
     annotations = {
       generated-by = "magic-modules"
     }
+    client = "tempplate-client-update"
+    client_version = "template-client-version-update"
     containers {
       name = "container-update"
       image = "us-docker.pkg.dev/cloudrun/container/worker-pool"
@@ -193,7 +197,6 @@ resource "google_cloud_run_v2_worker_pool" "default" {
   description = "description creating"
   location = "us-central1"
   deletion_protection = false
-  launch_stage = "BETA"
   
 
   annotations = {
@@ -296,7 +299,6 @@ resource "google_cloud_run_v2_worker_pool" "default" {
   name     = "%{service_name}"
   location = "us-central1"
   deletion_protection = false
-  launch_stage = "BETA"
   
   template {
     containers {
@@ -319,7 +321,6 @@ resource "google_cloud_run_v2_worker_pool" "default" {
   name     = "%{service_name}"
   location = "us-central1"
   deletion_protection = false
-  launch_stage = "BETA"
   
   binary_authorization {
     policy = "projects/%{project}/platforms/cloudRun/policies/my-policy"
@@ -399,7 +400,6 @@ resource "google_cloud_run_v2_worker_pool" "default" {
   name     = "tf-test-cloudrun-worker-pool%{random_suffix}"
   location = "us-central1"
   deletion_protection = false
-  launch_stage = "BETA"
   
 
   labels = {
@@ -426,7 +426,6 @@ resource "google_cloud_run_v2_worker_pool" "default" {
   name     = "tf-test-cloudrun-worker-pool%{random_suffix}"
   location = "us-central1"
   deletion_protection = false
-  launch_stage = "BETA"
   
 
   labels = {
@@ -481,7 +480,6 @@ resource "google_cloud_run_v2_worker_pool" "default" {
   description = "description creating"
   location = "us-central1"
   deletion_protection = false
-  launch_stage = "BETA"
   annotations = {
     generated-by = "magic-modules"
   }
@@ -520,7 +518,6 @@ resource "google_cloud_run_v2_worker_pool" "default" {
   }
   client = "client-1"
   client_version = "client-version-1"
-  launch_stage = "BETA"
   scaling {
     manual_instance_count = 2
   }
@@ -565,7 +562,6 @@ resource "google_cloud_run_v2_worker_pool" "default" {
   description = "description creating"
   location = "us-central1"
   deletion_protection = false
-  launch_stage = "BETA"
   annotations = {
     generated-by = "magic-modules"
   }
